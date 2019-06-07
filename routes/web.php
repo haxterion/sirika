@@ -61,3 +61,6 @@ Route::get('/lapbaku/hapus/{id}','LapbakuController@hapus');
 
 Route::get('/pengiriman', 'PengirimanController@index');
 Route::get('/pengiriman/track/{id}', 'PengirimanController@track');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
