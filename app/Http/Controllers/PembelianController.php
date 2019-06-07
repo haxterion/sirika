@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class PembelianController extends Controller
 {
+	public function __construct()
+{
+    $this->middleware('auth');    
+    $this->middleware('operator');
+}
 	public function index()
     {
     $pemb = DB::table('pembelian')

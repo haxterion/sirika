@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
+	public function __construct()
+	{
+    $this->middleware('auth');    
+    $this->middleware('admin');
+	}
+	
     public function index()
     {
     	$supplier = DB::table('supplier')->get();

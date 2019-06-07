@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PengirimanController extends Controller
+{ 
+    public function __construct()
 {
+    $this->middleware('auth');    
+    $this->middleware('supplier');
+}
     public function index()
     {
     	$pengiriman = DB::table('pengiriman')->get();
