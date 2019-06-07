@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class Supplier
 {
@@ -13,8 +14,16 @@ class Supplier
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    function handle($request, Closure $next)
     {
+    if (Auth::check() && Auth::user()->role == 'supplier') {
         return $next($request);
+    }
+    elseif (Auth::check() && Auth::user()->role == 'operator') {
+        return redirect('/pembelian');
+    }
+    else {
+        return redirect('/pesanan');
+    }
     }
 }
