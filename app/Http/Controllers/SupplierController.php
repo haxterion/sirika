@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\User;
 class SupplierController extends Controller
 {
 	public function __construct()
 	{
     $this->middleware('auth');    
-    $this->middleware('admin');
+    $this->middleware('role:admin');
 	}
 	
     public function index()
