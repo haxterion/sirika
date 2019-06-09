@@ -49,8 +49,8 @@
                 <input type="text" name="id_pemb" value="{{$p->id_pemb}}" hidden="">
                 <div class="form-group">
                   <label>Operator</label>
-                  <input type="text"  value="{{Session::get('name')}}" class="form-control" placeholder="Operator" disabled="">
-                  <input type="text" name="operator" value="{{Session::get('id')}}"  hidden="">
+                  <input type="text"  value="{{Auth::user()->name}}" class="form-control" placeholder="Operator" disabled="">
+                  <input type="text" name="operator" value="{{Auth::user()->id}}"  hidden="">
                 </select> 
                 </div>
                 <div class="form-group">

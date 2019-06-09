@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 class BahanbakuController extends Controller
 {
 	public function __construct()
-	{
+{
     $this->middleware('auth');    
-    $this->middleware('role:operator' && 'role:admin');
-	}
-    public function index()
+    $this->middleware('role:admin');
+}
+	public function index()
     {
     	$bahanbaku = DB::select("select b.*,(select nama_sup from supplier where id_sup=b.id_sup) as nama_sup from bahanbaku b");
     	return view('bahanbaku.index',['bahanbaku' => $bahanbaku]);

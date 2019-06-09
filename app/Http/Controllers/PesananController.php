@@ -9,6 +9,11 @@ use PDF;
 
 class PesananController extends Controller
 {
+    public function __construct()
+    {
+    $this->middleware('auth');    
+    $this->middleware('role:admin');
+    }
     public function index()
     {
     	$pesanan = DB::table('pesanan')

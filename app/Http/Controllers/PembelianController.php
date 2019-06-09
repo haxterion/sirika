@@ -10,7 +10,7 @@ class PembelianController extends Controller
 	public function __construct()
 {
     $this->middleware('auth');    
-    $this->middleware('operator');
+    $this->middleware('role:supplier');
 }
 	public function index()
     {
