@@ -13,7 +13,11 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
+              @if (Auth::user()->name == "admin")
               <a class="btn btn-success" href="/bahanbaku/tambah">Tambah Data BahanBaku</a>
+              @else
+              Bahan Baku
+              @endif
             </div>
             <!-- /.box-header -->
             <div class="box-body">
