@@ -10,7 +10,6 @@ class PembelianController extends Controller
 	public function __construct()
 {
     $this->middleware('auth');    
-    $this->middleware('role:supplier');
 }
 	public function index()
     {
@@ -66,6 +65,15 @@ class PembelianController extends Controller
 
 	public function send(Request $request)
 	{
+		$this->validate($request, [
+      'kwitansi'  => 'required'
+     ]);
+		$image = $request->file('kwitansi');
+     $new_name = rand() . '.' . $image->getClientOriginalExtension();
+     $image->move(public_path('images'), $new_name);
+     DB::table('pembelian')->where('id_pemb',$request->id_pemb)->update([
+     	'kwitansi' => $new_name,
+     ]);
 	// insert data ke table supplier
 	DB::table('pengiriman')->insert([
 		'id_pemb' => $request->id_pemb,

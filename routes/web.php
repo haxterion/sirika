@@ -20,37 +20,37 @@ Route::get('/logout', 'User@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/supplier', 'SupplierController@index')->name('supplier');
-Route::get('/supplier/tambah', 'SupplierController@tambah')->name('supplier');
-Route::post('/supplier/store', 'SupplierController@store')->name('supplier');
-Route::get('/supplier/edit/{id}','SupplierController@edit');
-Route::post('/supplier/update', 'SupplierController@update')->name('supplier');
-Route::get('/supplier/hapus/{id}','SupplierController@hapus');
+Route::get('/supplier', 'SupplierController@index')->middleware('admin');
+Route::get('/supplier/tambah', 'SupplierController@tambah')->middleware('admin');
+Route::post('/supplier/store', 'SupplierController@store')->middleware('admin');
+Route::get('/supplier/edit/{id}','SupplierController@edit')->middleware('admin');;
+Route::post('/supplier/update', 'SupplierController@update')->middleware('admin');;
+Route::get('/supplier/hapus/{id}','SupplierController@hapus')->middleware('admin');;
 
-Route::get('/pesanan', 'PesananController@index');
-Route::get('/pesanan/beli/{id}', 'PesananController@beli');
-Route::get('/pesanan/setuju/{id}', 'PesananController@setuju');
-Route::post('/pesanan/update', 'PesananController@update')->name('ajaxupload.action');
-Route::post('/pesanan/kirim', 'PesananController@kirim');
-Route::get('/pesanan/print/{id}','PesananController@print');
+Route::get('/pesanan', 'PesananController@index')->middleware('admin');
+Route::get('/pesanan/beli/{id}', 'PesananController@beli')->middleware('admin');
+Route::get('/pesanan/setuju/{id}', 'PesananController@setuju')->middleware('admin');
+Route::post('/pesanan/update', 'PesananController@update')->middleware('admin');
+Route::post('/pesanan/kirim', 'PesananController@kirim')->middleware('admin');
+Route::get('/pesanan/print/{id}','PesananController@print')->middleware('admin');
 
-Route::get('/bahanbaku', 'BahanbakuController@index')->name('bahanbaku');
-Route::get('/bahanbaku/tambah', 'BahanbakuController@tambah')->name('bahanbaku');
-Route::post('/bahanbaku/store', 'BahanbakuController@store')->name('bahanbaku');
-Route::get('/bahanbaku/edit/{id}','BahanbakuController@edit');
-Route::get('/bahanbaku/pesan/{id}','BahanbakuController@pesan');
-Route::post('/bahanbaku/kirim', 'BahanbakuController@kirim');
-Route::post('/bahanbaku/update', 'BahanbakuController@update')->name('bahanbaku');
-Route::get('/bahanbaku/hapus/{id}','BahanbakuController@hapus');
+Route::get('/bahanbaku', 'BahanbakuController@index')->middleware('admin');
+Route::get('/bahanbaku/tambah', 'BahanbakuController@tambah')->middleware('hanyaadmin');
+Route::post('/bahanbaku/store', 'BahanbakuController@store')->middleware('admin');
+Route::get('/bahanbaku/edit/{id}','BahanbakuController@edit')->middleware('admin');
+Route::get('/bahanbaku/pesan/{id}','BahanbakuController@pesan')->middleware('admin');
+Route::post('/bahanbaku/kirim', 'BahanbakuController@kirim')->middleware('admin');
+Route::post('/bahanbaku/update', 'BahanbakuController@update')->middleware('admin');
+Route::get('/bahanbaku/hapus/{id}','BahanbakuController@hapus')->middleware('admin');
 
-Route::get('/pembelian', 'PembelianController@index')->name('pembelian');
-Route::get('/pembelian/tambah', 'PembelianController@tambah')->name('pembelian');
-Route::post('/pembelian/store', 'PembelianController@store')->name('pembelian');
-Route::get('/pembelian/edit/{id}','PembelianController@edit');
-Route::post('/pembelian/send','PembelianController@send');
-Route::get('/pembelian/kirim/{id}','PembelianController@kirim');
-Route::post('/pembelian/update', 'PembelianController@update')->name('pembelian');
-Route::get('/pembelian/hapus/{id}','PembelianController@hapus');
+Route::get('/pembelian', 'PembelianController@index')->middleware('supplier');
+Route::get('/pembelian/tambah', 'PembelianController@tambah')->middleware('supplier');
+Route::post('/pembelian/store', 'PembelianController@store')->middleware('supplier');
+Route::get('/pembelian/edit/{id}','PembelianController@edit')->middleware('supplier');
+Route::post('/pembelian/send','PembelianController@send')->middleware('supplier');
+Route::get('/pembelian/kirim/{id}','PembelianController@kirim')->middleware('supplier');
+Route::post('/pembelian/update', 'PembelianController@update')->middleware('supplier');
+Route::get('/pembelian/hapus/{id}','PembelianController@hapus')->middleware('supplier');
 
 Route::get('/lapbaku', 'LapbakuController@index')->name('lapbaku');
 Route::get('/lapbaku/tambah', 'LapbakuController@tambah')->name('lapbaku');
@@ -59,8 +59,8 @@ Route::get('/lapbaku/edit/{id}','LapbakuController@edit');
 Route::post('/lapbaku/update', 'LapbakuController@update')->name('lapbaku');
 Route::get('/lapbaku/hapus/{id}','LapbakuController@hapus');
 
-Route::get('/pengiriman', 'PengirimanController@index');
-Route::get('/pengiriman/track/{id}', 'PengirimanController@track');
+Route::get('/pengiriman', 'PengirimanController@index')->middleware('admin');
+Route::get('/pengiriman/track/{id}', 'PengirimanController@track')->middleware('hanyaadmin');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

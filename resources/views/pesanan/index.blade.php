@@ -155,7 +155,6 @@
                   <th>#</th>
                   <th>Nama </th>
                   <th>Kuantitas</th>
-                  <th>Foto Kwitansi</th>
                   <th>Status</th>
                   <th>Keterangan</th>
                   <th>Aksi</th>
@@ -169,7 +168,6 @@
                   <td>{{$no++}}</td>
                   <td>{{$s->nama_baku}}</td>
                   <td>{{$s->kuantitas}}</td>
-                  <td><img src="/images/{{$s->kwitansi}}" width="300"></td>
                   <td>@if($s->status == 1) 
                                     <span class="label label-success">Tersetujui</span>
                                 @else

@@ -188,10 +188,6 @@
                   <input type="text" name="satuan" placeholder="Masukkan Satuan" value="{{$b->satuan}}" hidden="">
                 </div>
                 <div class="form-group">
-                  <label>Upload Gambar Kwitansi</label>
-                  <input type="file" name="select_file"/>
-                </div>
-                <div class="form-group">
                   <label>Tambah Stok</label>
                   <input type="text" name="kuantitas" class="form-control" placeholder="Masukkan Stok" value="{{$b->kuantitas}}" >
                 </div>

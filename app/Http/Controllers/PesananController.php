@@ -57,15 +57,7 @@ class PesananController extends Controller
     }
     public function kirim(Request $request)
     {
-    	$this->validate($request, [
-      'select_file'  => 'required'
-     ]);
-
-     $image = $request->file('select_file');
-
-     $new_name = rand() . '.' . $image->getClientOriginalExtension();
-
-     $image->move(public_path('images'), $new_name);
+    	
     	$kuantitas = $request->kuantitas;
     	$stok = $request->stok;
     	DB::table('bahanbaku')->where('id_baku',$request->id_baku)->update([
@@ -74,7 +66,6 @@ class PesananController extends Controller
 	]);
     	DB::table('pesanan')->where('id',$request->id)->update([
 		'status' => 1,
-		'kwitansi' => $new_name,
 		
 	]);	
      

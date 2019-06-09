@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-
+use App\User;
 class Operator
 {
     /**
@@ -16,14 +16,12 @@ class Operator
      */
     function handle($request, Closure $next)
     {
-    if (Auth::check() && Auth::user()->role == 'operator') {
-        return $next($request);
-    }
-    elseif (Auth::check() && Auth::user()->role == 'supplier') {
-        return redirect('/pengiriman');
-    }
-    else {
-        return redirect('/supplier');
-    }
-    }
+    $user = User::with('roles')->find(Auth::id());
+if ($user->roles()->where('name', '=', 'operator')->first())
+  {
+    return $next($request);
+  } else {
+    abort(401, 'This action is unauthorized.');
+  }
+}
 }

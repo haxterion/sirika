@@ -23,6 +23,7 @@
                   <th>#</th>
                   <th>Nama Baku</th>
                   <th>Kuantitas</th>
+                  <th>Kwitansi</th>
                   <th>Status Pembayaran</th>
                   <th>Aksi</th>
                 </tr> 
@@ -35,6 +36,7 @@
                   <td>{{$no++}}</td>
                   <td>{{$s->nama_baku}}</td>
                   <td>{{$s->kuantitas}}</td>
+                  <td><img src="/images/{{$s->kwitansi}}" width="50%"></td>
                   <td>@if($s->status_pembayaran == 1) 
                                     <span class="badge badge-danger">Sudah</span>
                                 @else

@@ -5,7 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 use App\User;
-class Admin
+
+class HanyaAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,19 +16,13 @@ class Admin
      * @return mixed
      */
     public function handle($request, Closure $next)
-{
-  $user = User::with('roles')->find(Auth::id());
-
-  if ($user->roles()->where('name', '=', 'admin')->first())
+    {
+        $user = User::with('roles')->find(Auth::id());
+if ($user->roles()->where('name', '=', 'admin')->first())
   {
     return $next($request);
-  } elseif ($user->roles()->where('name', '=', 'operator')->first()){
-    return $next($request);
-    } elseif ($user->roles()->where('name', '=', 'supplier')->first()){
-    return $next($request);
-
-  } else{
+  } else {
     abort(401, 'This action is unauthorized.');
-}
-}
+  }
+    }
 }

@@ -39,10 +39,10 @@ class LoginController extends Controller
     }
     protected function redirectTo( ) {
     if (Auth::check() && Auth::user()->role == 'supplier') {
-        return('/pengiriman');
+        return('/pembelian');
     }
     elseif (Auth::check() && Auth::user()->role == 'operator') {
-        return('/pembelian');
+        return('/pesanan');
     }
     else {
         return('/supplier');

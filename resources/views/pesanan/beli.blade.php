@@ -27,10 +27,6 @@
                   <input type="text" name="id_baku" value="{{$p->id_baku}}" hidden="" >
                 </div>
                 <div class="form-group">
-                  <label>Upload Gambar Kwitansi</label>
-                  <input type="file" name="select_file"/>
-                </div>
-                <div class="form-group">
                   <label>Kuantitas</label>
                   <input type="text" name="kuantitas" class="form-control" placeholder="Masukkan Kuantitas">
                 </div>

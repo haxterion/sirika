@@ -9,12 +9,12 @@ class SupplierController extends Controller
 {
 	public function __construct()
 	{
-    $this->middleware('auth');    
-    $this->middleware('role:admin');
+
+    $this->middleware('auth');
 	}
 	
     public function index()
-    {
+    {	
     	$supplier = DB::table('supplier')->get();
     	return view('supplier.index',['supplier' => $supplier]);
  

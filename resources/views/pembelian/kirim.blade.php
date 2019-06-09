@@ -42,7 +42,7 @@
               <h3 class="box-title">Tambah Data Pengiriman</h3>
             </div>
             <div class="box-body">
-              <form role="form" action="/pembelian/send" method="post">
+              <form role="form" action="/pembelian/send" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <!-- text input -->
                 @foreach ($pembelian as $p)
@@ -52,6 +52,10 @@
                   <input type="text"  value="{{Auth::user()->name}}" class="form-control" placeholder="Operator" disabled="">
                   <input type="text" name="operator" value="{{Auth::user()->id}}"  hidden="">
                 </select> 
+                </div>
+                <div class="form-group">
+                  <label>Upload Foto Kwitansi</label>
+                  <input type="file" class="form-control" name="kwitansi">
                 </div>
                 <div class="form-group">
                   <label>Supplier</label>
