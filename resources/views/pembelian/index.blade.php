@@ -38,11 +38,17 @@
                   <td>{{$s->kuantitas}}</td>
                   <td><img src="/images/{{$s->kwitansi}}" width="50%"></td>
                   <td>@if($s->status_pembayaran == 1) 
-                                    <span class="badge badge-danger">Sudah</span>
+                                    <span class="label label-success">Sudah</span>
                                 @else
-                                    <span class="badge badge-success">Belum</span> 
+                                    <span class="label label-danger">Belum</span> 
                                 @endif</td>
-                  <td><a class="btn btn-block btn-primary" href="/pembelian/edit/{{ $s->id_pemb }}">Edit</a><a class="btn btn-block btn-warning" href="/pembelian/kirim/{{ $s->id_pemb }}">Kirim</a></td>
+                  <td>
+                    @if ($s->status_pembayaran == 1)
+                    <a class="btn btn-block btn-primary" href="/pembelian/edit/{{ $s->id_pemb }}">Edit</a><a class="btn btn-block btn-warning" href="/pembelian/kirim/{{ $s->id_pemb }}">Kirim</a>
+                    @else
+                    <a class="btn btn-block btn-primary" href="/pembelian/edit/{{ $s->id_pemb }}">Edit</a>
+                    @endif
+                  </td>
                   
                 </tr>
                 @endforeach

@@ -44,7 +44,11 @@ class PembelianController extends Controller
 	{
 	// mengambil data supplier berdasarkan id yang dipilih
 	$bahanbaku = DB::table('bahanbaku')->get();
-	$pemb = DB::table('pembelian')->where('id_pemb',$id)->get();
+	$pemb = DB::table('pembelian')
+    		->select('pembelian.*', 'bahanbaku.*')
+            ->join('bahanbaku', 'pembelian.id_baku', '=', 'bahanbaku.id_baku')
+           	->where('id_pemb',$id)
+            ->get();
 	// passing data pegawai yang didapat ke view edit.blade.php
 	return view('pembelian.edit')->with(compact('pemb','bahanbaku'));
 	}
@@ -68,7 +72,7 @@ class PembelianController extends Controller
 		$this->validate($request, [
       'kwitansi'  => 'required'
      ]);
-		$image = $request->file('kwitansi');
+	 $image = $request->file('kwitansi');
      $new_name = rand() . '.' . $image->getClientOriginalExtension();
      $image->move(public_path('images'), $new_name);
      DB::table('pembelian')->where('id_pemb',$request->id_pemb)->update([

@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Supplier</title>
+  <title>{{Auth::user()->name}}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="{{url('assets/bower_components/select2/dist/css/select2.min.css')}}">
@@ -108,6 +108,7 @@
           <a href="/">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a></li>
+          @if (Auth::user()->name == "admin")
           <li>
           <a href="/supplier">
             <i class="fa fa-truck"></i> <span>Supplier</span>
@@ -121,13 +122,25 @@
             <i class="fa fa-commenting-o"></i> <span>Pesanan</span>
           </a></li>
           <li>
-          <a href="/pembelian">
-            <i class="fa fa-money"></i> <span>Pembelian</span>
-          </a></li>
-          <li>
           <a href="/pengiriman">
             <i class="fa fa-plane"></i> <span>Pengiriman</span>
           </a></li>
+           @elseif (Auth::user()->name == "operator") 
+          <li>
+          <a href="/bahanbaku">
+            <i class="fa fa-bank"></i> <span>Bahan Baku</span>
+          </a></li>
+          <li>
+          <a href="/pesanan">
+            <i class="fa fa-commenting-o"></i> <span>Pesanan</span>
+          </a></li>
+            @else
+          <li>
+          <a href="/pembelian">
+            <i class="fa fa-money"></i> <span>Pembelian</span>
+          </a></li>
+          @endif
+
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
       </ul>
     </section>

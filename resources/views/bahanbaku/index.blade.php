@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Bahan Baku Operator
+        Data Bahan Baku {{Auth::user()->name}}
       </h1>
     </section>
 
@@ -40,11 +40,23 @@
                   
                   <td>{{$no++}}</td>
                   <td>{{$s->nama_baku}}</td>
-                  <td>{{$s->stok}}</td>
+                  <td>
+                    @if ($s->stok <= "20")
+                      <span class="badge bg-red">{{$s->stok}}</span>
+                    @else
+                    {{$s->stok}}
+                  @endif
+                  </td>
+                  
                   <td>{{$s->satuan}}</td>
                   <td>{{$s->hrg_beli}}</td>
                   <td>{{$s->nama_sup}}</td>
-                  <td><a class="btn btn-block btn-success" href="/bahanbaku/pesan/{{ $s->id_baku }}">Pesan</a><a class="btn btn-block btn-primary" href="/bahanbaku/edit/{{ $s->id_baku }}">Edit</a><a class="btn btn-block btn-danger" href="/bahanbaku/hapus/{{ $s->id_baku }}">Hapus</a></td>
+                  <td>@if (Auth::user()->name == "operator")
+                    <a class="btn btn-block btn-success" href="/bahanbaku/pesan/{{ $s->id_baku }}">Pesan</a><a class="btn btn-block btn-primary" href="/bahanbaku/edit/{{ $s->id_baku }}">Edit</a><a class="btn btn-block btn-danger" href="/bahanbaku/hapus/{{ $s->id_baku }}">Hapus</a>
+                    @else
+                    <a class="btn btn-block btn-primary" href="/bahanbaku/edit/{{ $s->id_baku }}">Edit</a><a class="btn btn-block btn-danger" href="/bahanbaku/hapus/{{ $s->id_baku }}">Hapus</a>
+                    @endif
+                  </td>
                   
                 </tr>
                 @endforeach

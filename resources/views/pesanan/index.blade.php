@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Supplier</title>
+  <title>{{Auth::user()->name}}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="{{url('assets/bower_components/select2/dist/css/select2.min.css')}}">
@@ -66,7 +66,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  {{Session::get('name')}}
+                  {{ Auth::user()->name }}
                   <small>Selamat datang</small>
                 </p>
               </li>
@@ -106,6 +106,7 @@
           <a href="/">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a></li>
+          @if (Auth::user()->name == "admin")
           <li>
           <a href="/supplier">
             <i class="fa fa-truck"></i> <span>Supplier</span>
@@ -119,13 +120,25 @@
             <i class="fa fa-commenting-o"></i> <span>Pesanan</span>
           </a></li>
           <li>
-          <a href="/pembelian">
-            <i class="fa fa-money"></i> <span>Pembelian</span>
-          </a></li>
-          <li>
           <a href="/pengiriman">
             <i class="fa fa-plane"></i> <span>Pengiriman</span>
           </a></li>
+           @elseif (Auth::user()->name == "operator") 
+          <li>
+          <a href="/bahanbaku">
+            <i class="fa fa-bank"></i> <span>Bahan Baku</span>
+          </a></li>
+          <li>
+          <a href="/pesanan">
+            <i class="fa fa-commenting-o"></i> <span>Pesanan</span>
+          </a></li>
+            @else
+          <li>
+          <a href="/pembelian">
+            <i class="fa fa-money"></i> <span>Pembelian</span>
+          </a></li>
+          @endif
+
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
       </ul>
     </section>
@@ -157,7 +170,10 @@
                   <th>Kuantitas</th>
                   <th>Status</th>
                   <th>Keterangan</th>
+                  @if (Auth::user()->name == "admin")
                   <th>Aksi</th>
+                  @else
+                  @endif
                 </tr> 
                 </thead>
                 <tbody>
@@ -174,13 +190,17 @@
                                     <span class="label label-danger">Belum</span> 
                                 @endif</td>
                   <td>{{$s->keterangan}}</td>
+                  @if (Auth::user()->name == "admin")
                   <td>@if($s->status == 1) 
-                                    <a class="btn btn-block btn-success" href="/pesanan/beli/{{ $s->id }}">Beli</a>
-                                    <a class="btn btn-block btn-success" href="/pesanan/print/{{ $s->id }}"><i class="fa fa-fw fa-print"></i> Print</a>
+                                    <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fa fa-check"></i> Pesanan telah disetujui</h5>
+              </div>  
                                 @else
                                     <a class="btn btn-block btn-info" href="/pesanan/beli/{{ $s->id }}">Setuju</a>
                                 @endif</td>
-                  
+                  @else
+                  @endif
                 </tr>
                 @endforeach
               </tbody>

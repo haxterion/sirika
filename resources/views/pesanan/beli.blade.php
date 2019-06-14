@@ -28,22 +28,7 @@
                 </div>
                 <div class="form-group">
                   <label>Kuantitas</label>
-                  <input type="text" name="kuantitas" class="form-control" placeholder="Masukkan Kuantitas">
-                </div>
-                <div class="form-group">
-                	<label>Status Pembayaran</label>
-                	<div class="radio">
-                    <label>
-                      <input type="radio" name="status_pembayaran" id="optionsRadios1" value="1" >
-                      Sudah
-                    </label>
-                    <div class="radio">
-                    <label>
-                      <input type="radio" name="status_pembayaran" id="optionsRadios1" value="2" >
-                      Belum
-                    </label>
-                  </div>
-
+                  <input type="text" name="kuantitas" class="form-control" placeholder="Masukkan Kuantitas" value="{{$p->kuantitas}}">
                 </div>
                 <div class="form-group">
                   <label>Keterangan</label>

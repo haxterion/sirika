@@ -23,13 +23,8 @@
                 <input type="text" name="id" value="{{$p->id_pemb}}" hidden="">
                 <div class="form-group">
                   <label>Nama Bahan</label>
-                  
-                  <select name="id_baku" class="form-control select2" style="width: 100%;">
-                  <option>Pilih Bahan Baku</option>
-                  @foreach ($bahanbaku as $b)
-                  <option value="{{$p->id_baku}}">{{$b->nama_baku}}</option>
-                  @endforeach
-                </select>
+                  <input type="text" class="form-control" placeholder="Masukkan Stok" value="{{$p->nama_baku}}" disabled="">
+                  <input type="text" name="id_baku" value="{{$p->id_baku}}" hidden="">
                 </div>
                 <div class="form-group">
                   <label>Kuantitas</label>

@@ -178,14 +178,12 @@
               <table class="table table-striped">
                 <tr>
                   <th>ID Baku</th>
-                  <th style="width: 40px">Tgl Transaksi</th>
+                  <th>Tgl Transaksi</th>
                 </tr>
-
                   @foreach($pengiriman as $p)
                 <tr>
-                  <td>{{$p->id_pemb}}</td>
+                  <td>{{$p->nama_baku}}</td>
                   <td>{{$p->tgl_transaksi}}</td>
-                  
                 </tr>
                 @endforeach
               </table>

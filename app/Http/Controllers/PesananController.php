@@ -12,7 +12,6 @@ class PesananController extends Controller
     public function __construct()
     {
     $this->middleware('auth');    
-    $this->middleware('role:admin');
     }
     public function index()
     {
@@ -73,11 +72,11 @@ class PesananController extends Controller
 		'id_baku' => $request->id_baku,
 		'kuantitas' => $request->kuantitas,
 		'tgl_transaksi' => date("Y-m-d"),
-		'status_pembayaran' => $request->status_pembayaran,
+		'status_pembayaran' => 2,
 
     ]);
 
-    	return redirect('pembelian');
+    	return redirect('pesanan');
     }
     public function update(Request $request)
     {

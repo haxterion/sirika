@@ -36,8 +36,8 @@
                   <td>{{$no++}}</td>
                   <td>{{$s->id_pemb}}</td>
                   <td>{{$s->tgl_transaksi}}</td>
-                  <td>{{$s->operator}}</td>
-                  <td>{{$s->supplier}}</td>
+                  <td>{{$s->name}}</td>
+                  <td>{{$s->nama_sup}}</td>
                   <td><a class="btn btn-block btn-primary" href="/pengiriman/track/{{ $s->id_pemb }}">Track</a>
                   
                 </tr>

@@ -42,7 +42,7 @@ class LoginController extends Controller
         return('/pembelian');
     }
     elseif (Auth::check() && Auth::user()->role == 'operator') {
-        return('/pesanan');
+        return('/bahanbaku');
     }
     else {
         return('/supplier');
